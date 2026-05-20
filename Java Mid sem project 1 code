@@ -1,0 +1,71 @@
+import java.util.*;
+
+// Food Class
+class Food {
+    int id, price;
+    String name;
+
+    Food(int id, String name, int price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+}
+
+public class OnlineFoodDelivery {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Menu
+        ArrayList<Food> menu = new ArrayList<>();
+
+        menu.add(new Food(1, "Burger", 120));
+        menu.add(new Food(2, "Pizza", 250));
+        menu.add(new Food(3, "Pasta", 180));
+
+        int total = 0, choice;
+
+        do {
+            System.out.println("\n1.Show Menu");
+            System.out.println("2.Order Food");
+            System.out.println("3.Exit");
+            System.out.print("Enter Choice: ");
+
+            choice = sc.nextInt();
+
+            switch(choice) {
+
+                case 1:
+                    for(Food f : menu) {
+                        System.out.println(f.id + " " + f.name + " Rs." + f.price);
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter Food ID: ");
+                    int id = sc.nextInt();
+
+                    for(Food f : menu) {
+                        if(f.id == id) {
+                            total += f.price;
+                            System.out.println(f.name + " Ordered");
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Total Bill = Rs." + total);
+                    System.out.println("Thank You!");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice");
+            }
+
+        } while(choice != 3);
+
+        sc.close();
+    }
+}
